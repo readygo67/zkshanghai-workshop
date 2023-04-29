@@ -417,6 +417,38 @@ template BubbleSort(n, nBits){
         out[i] <== tmp[n-1-i][i][i];
     }
 }
+//BubbleSort的tmp 是signal，只能被赋值一次，BubbleSort1的tmp是var，可以重复被赋值
+template BubbleSort1(n, nBits){
+    signal input in[n];
+    signal output out[n];
+    var tmp[n];  //
+
+    component swap[n-1][n-1];
+
+    for (var j=0;j<n;j++){
+        tmp[j] = in[j]; 
+        tmp[j] === in[j];
+    }
+
+    // (i-1)round, the ith round has (n-i-1) step.
+    for (var i=0; i<n-1;i++){
+        for (var j=0;j < n -i -1;j++){   
+            swap[i][j]= Swap(nBits);
+            swap[i][j].in[0] <== tmp[j];
+            swap[i][j].in[1] <== tmp[j+1];
+
+            tmp[j] = swap[i][j].out[0];
+            tmp[j+1] = swap[i][j].out[1];
+
+            tmp[j] === swap[i][j].out[0];
+            tmp[j+1] === swap[i][j].out[1];
+        }
+    }
+
+    for (var j=0;j<n;j++){
+        out[j] <== tmp[j];
+    }
+}
 
 component main = BubbleSort(16, 252);
 
