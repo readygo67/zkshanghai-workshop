@@ -450,7 +450,7 @@ template BubbleSort1(n, nBits){
     }
 }
 
-component main = BubbleSort(16, 252);
+component main = BubbleSort1(16, 252);
 
 /* INPUT = {
     "in": ["9","16","7","25","4","3","34","1","0","5","100","20","200","1","18","8"]
